@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    color-scheme: dark;
+    /* Force dark mode for form controls */
+    --bg-color: #050505;
+    --card-surface: rgba(19, 18, 18, 0.6);
+    --border-soft: rgba(218, 215, 215, 0.322);
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+
+    /*renkler degistireiebilr pembe hoş olur diye dusundum*/
+    --accent-gradient: linear-gradient(135deg, #FF66C4 0%, #B966FF 100%);
+    --accent-glow: 0 0 20px rgba(255, 102, 196, 0.2);
+
+    --font-stack: 'Plus Jakarta Sans', sans-serif;
+}
+
+/*genel body*/
+body {
+    background-color: var(--bg-color);
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(255, 102, 196, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(185, 102, 255, 0.15) 0%, transparent 40%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    font-family: var(--font-stack);
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/*linkler */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}
+
+
+/*container */
+.container {
+    max-width: 1200px;
+
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/*header */
+.header {
+    background: rgba(5, 5, 5, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-soft);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.brand {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.panel {
+    background: var(--card-surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 24px;
+    /*yumusak kenarlar icin*/
+    padding: 35px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/*hover efekti*/
+.panel:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 102, 196, 0.3);
+    box-shadow: var(--accent-glow);
+}
+
+/*basliklar */
+h2,
+h3 {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.8rem;
+}
+
+h3 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: #eeeeee;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h3::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+}
+
+/*butonlar icin*/
+.btn {
+    display: inline-block;
+    background: var(--accent-gradient);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 100px;
+    /* Full Pill */
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 20px -5px rgba(255, 102, 196, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px -8px rgba(185, 102, 255, 0.6);
+}
+
+/*formlar icin*/
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/*inputlar icin*/
+
+input,
+select {
+    width: 100%;
+    /* Reset browser default styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    background: #111 !important;
+    /* Force dark background */
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    padding: 16px;
+    color: white !important;
+    /* Force white text */
+    font-family: var(--font-stack);
+    font-size: 1rem;
+    margin-bottom: 25px;
+    transition: all 0.3s;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23B966FF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 0.65em auto;
+}
+
+/* Dropdown fix for visibility */
+option {
+    background-color: #222 !important;
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+}
+
+/*focus efekti*/
+input:focus,
+select:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: #B966FF;
+    box-shadow: 0 0 0 4px rgba(185, 102, 255, 0.1);
+}
+
+/* grid icin*/
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* utils icin*/
+.badge {
+    background: rgba(255, 102, 196, 0.1);
+    color: #FF66C4;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/*kullanıcı bilgileri icin*/
+.user-info {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

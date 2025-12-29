@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div
+    style="height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle at center, rgba(185, 102, 255, 0.1) 0%, transparent 70%);">
+
+    <h1 style="font-size: 3.5rem; margin-bottom: 20px; line-height: 1.2;">
+        NEXT GEN <br>
+        <span class="brand" style="font-size: 4rem;">DISCORD MANAGMENT</span>
+    </h1>
+
+    <p style="font-size: 1.2rem; color: #a7a7a7; max-width: 600px; margin-bottom: 40px;">
+        Premium administration console for advanced communities.
+        Secure, Fast, and Beautifully designed for modern servers.
+    </p>
+
+    <div style="display: flex; gap: 20px;">
+        <a href="{{ url_for('login') }}" class="btn"
+            style="padding: 18px 45px; font-size: 1.1rem; box-shadow: 0 0 30px rgba(255, 102, 196, 0.4);">
+            ACCESS CONSOLE
+        </a>
+        <a href="https://discord.com" target="_blank" class="btn"
+            style="background: rgba(255,255,255,0.05); box-shadow: none; border: 1px solid rgba(255,255,255,0.1);">
+            DOCUMENTATION
+        </a>
+    </div>
+
+    <div style="margin-top: 80px; opacity: 0.5; font-size: 0.9rem;">
+        POWERED BY <span style="color: #fff;">ELIF</span> & <span style="color: #fff;">NISA</span> & <span
+            style="color: #fff;">SEYMA</span>
+    </div>
+
+</div>
+{% endblock %}

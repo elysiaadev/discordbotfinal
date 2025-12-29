@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="header" style="margin-bottom: 30px;">
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <div
+            style="width: 40px; height: 40px; background: #222; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem;">
+            {{ server.name[0] if server else '?' }}
+        </div>
+        <div>
+            <h2 style="margin: 0; padding: 0; border: none; font-size: 1.5rem;">{{ server.name|upper if server else
+                'UNKNOWN SERVER' }}</h2>
+            <span class="user-info">SERVER ID: {{ server_id }}</span>
+        </div>
+    </div>
+    <a href="/dashboard" class="btn">EXIT CONSOLE</a>
+</div>
+
+{% if server %}
+<form method="POST">
+    <div class="grid-3">
+
+
+        <div class="panel">
+            <h3>01 // CORE & SECURITY</h3>
+
+            <label>COMMAND PREFIX</label>
+            <input type="text" name="prefix" value="{{ settings['prefix'] or '!' }}">
+
+            <label>SERVER TAG (CLAN TAG)</label>
+            <input type="text" name="tag" value="{{ settings['tag'] or '' }}" placeholder="[TAG]">
+
+            <label>AUTO-ROLE (NEW MEMBERS)</label>
+            <select name="autorole">
+                <option value="0">disabled</option>
+                {% for role in roles %}
+                <option value="{{ role.id }}" {% if settings['autorole']==role.id %}selected{% endif %}>
+                    @{{ role.name }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <div style="margin-top: 30px; border-top: 1px solid #222; padding-top: 20px;">
+                <label style="color: var(--danger);">ADMIN ROLE (BAN/KICK)</label>
+                <select name="admin_role" disabled style="opacity: 0.5; cursor: not-allowed;">
+                    <option>Manage in Discord Roles</option>
+                </select>
+                <small style="color: #444;">* Role permission sync active</small>
+            </div>
+        </div>
+
+
+        <div class="panel">
+            <h3>02 // LOGGING CHANNELS</h3>
+
+            <label>SYSTEM LOGS (AUDIT)</label>
+            <select name="log_channel">
+                <option value="0">disabled</option>
+                {% for channel in channels %}
+                <option value="{{ channel.id }}" {% if settings['log_channel']==channel.id %}selected{% endif %}>
+                    #{{ channel.name }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label>LEVEL UP NOTIFICATIONS</label>
+            <select name="level_channel">
+                <option value="0">disabled</option>
+                {% for channel in channels %}
+                <option value="{{ channel.id }}" {% if settings['level_channel_id']==channel.id %}selected{% endif %}>
+                    #{{ channel.name }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label>CONFESSIONS (ANON)</label>
+            <select name="itiraf_channel">
+                <option value="0">disabled</option>
+                {% for channel in channels %}
+                <option value="{{ channel.id }}" {% if settings['itiraf_channel_id']==channel.id %}selected{% endif %}>
+                    #{{ channel.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+        <div class="panel">
+            <h3>03 // GAME CONFIGURATION</h3>
+
+            <label>TRIVIA GAME CHANNEL</label>
+            <select name="trivia_channel">
+                <option value="0">disabled</option>
+                {% for channel in channels %}
+                <option value="{{ channel.id }}" {% if settings['trivia_channel_id']==channel.id %}selected{% endif %}>
+                    #{{ channel.name }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <div style="background: #080808; padding: 15px; margin-top: 20px; border: 1px solid #222;">
+                <label>GLOBAL ECONOMY</label>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <span>Market System</span>
+                    <span style="color: #0f0;">ACTIVE</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Robbery Event</span>
+                    <span style="color: #0f0;">ACTIVE</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel" style="text-align: right; display: flex; justify-content: space-between; align-items: center;">
+        <span style="color: #444;">LAST SYNC: JUST NOW</span>
+        <button type="submit" class="btn" style="background: var(--accent); color: black;">DEPLOY CHANGES</button>
+    </div>
+</form>
+{% else %}
+<div class="panel">
+    <h3>CONNECTION LOST</h3>
+    <p>Target server unavailable.</p>
+</div>
+{% endif %}
+
+{% endblock %}

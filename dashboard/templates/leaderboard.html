@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a href="/dashboard" class="btn" style="margin-bottom: 20px;">⬅️ GERİ DÖN</a>
+
+<div class="card">
+    <h2>🏆 LİDERLİK TABLOSU</h2>
+    <p>Sunucu ID: {{ server_id }} için en yüksek XP'ye sahip kullanıcılar.</p>
+</div>
+
+<div class="card" style="padding: 0; overflow: hidden;">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Kullanıcı ID</th>
+                <th>Level</th>
+                <th>XP</th>
+                <th>Bakiye</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ loop.index }} 🏅</td>
+                <td>{{ user['user_id'] }}</td>
+                <td>{{ user['level'] }}</td>
+                <td>{{ user['xp'] }}</td>
+                <td>{{ user['botcoin'] }} 🪙</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="text-center">Henüz veri yok.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

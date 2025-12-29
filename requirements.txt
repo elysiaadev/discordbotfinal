@@ -1,0 +1,6 @@
+discord.py
+aiosqlite
+Pillow
+quart
+aiohttp
+python-dotenv

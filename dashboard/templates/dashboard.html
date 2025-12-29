@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="header">
+    <div class="brand">CONSOLE // BOT MANAGEMENT</div>
+    <div>{{ user['username']|upper }} [ADMIN]</div>
+</div>
+
+<div class="container">
+    {% if guilds %}
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px;">
+        {% for guild in guilds %}
+        <div class="panel" style="margin: 0; display: flex; flex-direction: column; justify-content: space-between;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    {% if guild.icon %}
+                    <img src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png"
+                        style="width: 50px; height: 50px; border-radius: 0; border: 1px solid #333232;">
+                    {% else %}
+                    <div style="width: 50px; height: 50px; background: #222; border: 1px solid #333232;"></div>
+                    {% endif %}
+                    <div>
+                        <h3 style="margin: 0; padding: 0; border: none; font-size: 1.1rem;">{{ guild.name }}</h3>
+                        <span class="badge">LICENSE ACTIVE</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid #222; padding-top: 15px; display: flex; gap: 10px;">
+                <a href="/settings/{{ guild.id }}" class="btn" style="flex: 1; text-align: center;">CONFIGURE</a>
+
+                <a href="/leaderboard/{{ guild.id }}" class="btn"
+                    style="background: transparent; border: 1px solid #333232; color: #B966FF; width: 40px; padding: 10px 0; text-align: center;">📊</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="panel">
+        <h3>NO ACTIVE SERVERS</h3>
+        <p>No managed servers found with active licenses.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
